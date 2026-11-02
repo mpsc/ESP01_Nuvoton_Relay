@@ -1,22 +1,22 @@
 ﻿# ESP-01 Nuvoton Relay Shield
 
-Firmware para ESP8266-01 (ESP-01/ESP-01S) com shield de relÃ© **Nuvoton**, controlando 2 relÃ©s via serial (Nuvoton MCU), com interface web, MQTT e auto-descoberta Home Assistant.
+Firmware para ESP8266-01 (ESP-01/ESP-01S) com shield de rele Nuvoton, controlando 2 reles via serial (Nuvoton MCU), com interface web, MQTT e auto-descoberta Home Assistant.
 
 ## Funcionalidades
 
-- **2 RelÃ©s** controlÃ¡veis via web e MQTT
-- **Nuvoton Shield** - RelÃ©s controlados via serial (Nuvoton MCU)
-- **Portal de configuraÃ§Ã£o** prÃ³prio (sem WiFiManager)
+- **2 Reles** controlaveis via web e MQTT
+- **Nuvoton Shield** - Reles controlados via serial (Nuvoton MCU)
+- **Portal de configuracao** proprio (sem WiFiManager)
 - **MQTT + HA Discovery** - Auto-descoberta no Home Assistant
-- **Interface web** - PÃ¡gina HTML para controle dos 2 relÃ©s
-- **EEPROM** - PersistÃªncia de configuraÃ§Ã£o (WiFi + MQTT)
+- **Interface web** - Pagina HTML para controle dos 2 reles
+- **EEPROM** - Persistencia de configuracao (WiFi + MQTT)
 - **LWT** - Last Will & Testament (disponibilidade)
 
 ## Hardware
 
 ### ESP-01 + Nuvoton Relay Shield
 
-| Componente | EspecificaÃ§Ã£o |
+| Componente | Especificacao |
 |-----------|---------------|
 | **Placa** | ESP8266-01 / ESP-01S (512KB ou 1MB) |
 | **Shield** | Nuvoton Relay Shield (2 reles) |
@@ -26,7 +26,7 @@ Firmware para ESP8266-01 (ESP-01/ESP-01S) com shield de relÃ© **Nuvoton**, con
 | **Serial RX** | GPIO3 (liberado, SERIAL_TX_ONLY) |
 | **Power** | 5V (shield tem regulador 3.3V para ESP-01) |
 
-### Nuvoton Shield - EspecificaÃ§Ãµes
+### Nuvoton Shield - Especificacoes
 
 | Item | Valor |
 |------|-------|
@@ -83,11 +83,11 @@ Apenas **PubSubClient** (v2.8+). Nenhuma outra biblioteca externa.
 
 | Topico | Descricao |
 |--------|-----------|
-| `esp01/Nuvoton/relay1/set` | Comando Rele 1 (ON/OFF) |
-| `esp01/Nuvoton/relay1/state` | Estado Rele 1 (ON/OFF) |
-| `esp01/Nuvoton/relay2/set` | Comando Rele 2 (ON/OFF) |
-| `esp01/Nuvoton/relay2/state` | Estado Rele 2 (ON/OFF) |
-| `esp01/Nuvoton/availability` | Disponibilidade (online/offline) |
+| `esp01/nuvoton/relay1/set` | Comando Rele 1 (ON/OFF) |
+| `esp01/nuvoton/relay1/state` | Estado Rele 1 (ON/OFF) |
+| `esp01/nuvoton/relay2/set` | Comando Rele 2 (ON/OFF) |
+| `esp01/nuvoton/relay2/state` | Estado Rele 2 (ON/OFF) |
+| `esp01/nuvoton/availability` | Disponibilidade (online/offline) |
 
 ### Home Assistant Discovery
 
