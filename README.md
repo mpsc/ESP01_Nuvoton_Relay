@@ -1,32 +1,32 @@
-# ESP-01 Novuton Relay Shield
+﻿# ESP-01 Nuvoton Relay Shield
 
-Firmware para ESP8266-01 (ESP-01/ESP-01S) com shield de relé **Novuton**, controlando 2 relés via serial (Nuvoton MCU), com interface web, MQTT e auto-descoberta Home Assistant.
+Firmware para ESP8266-01 (ESP-01/ESP-01S) com shield de relÃ© **Nuvoton**, controlando 2 relÃ©s via serial (Nuvoton MCU), com interface web, MQTT e auto-descoberta Home Assistant.
 
 ## Funcionalidades
 
-- **2 Relés** controláveis via web e MQTT
-- **Novuton Shield** - Relés controlados via serial (Nuvoton MCU)
-- **Portal de configuração** próprio (sem WiFiManager)
+- **2 RelÃ©s** controlÃ¡veis via web e MQTT
+- **Nuvoton Shield** - RelÃ©s controlados via serial (Nuvoton MCU)
+- **Portal de configuraÃ§Ã£o** prÃ³prio (sem WiFiManager)
 - **MQTT + HA Discovery** - Auto-descoberta no Home Assistant
-- **Interface web** - Página HTML para controle dos 2 relés
-- **EEPROM** - Persistência de configuração (WiFi + MQTT)
+- **Interface web** - PÃ¡gina HTML para controle dos 2 relÃ©s
+- **EEPROM** - PersistÃªncia de configuraÃ§Ã£o (WiFi + MQTT)
 - **LWT** - Last Will & Testament (disponibilidade)
 
 ## Hardware
 
-### ESP-01 + Novuton Relay Shield
+### ESP-01 + Nuvoton Relay Shield
 
-| Componente | Especificação |
+| Componente | EspecificaÃ§Ã£o |
 |-----------|---------------|
 | **Placa** | ESP8266-01 / ESP-01S (512KB ou 1MB) |
-| **Shield** | Novuton Relay Shield (2 reles) |
+| **Shield** | Nuvoton Relay Shield (2 reles) |
 | **Rele 1** | Controlado via serial (Nuvoton) |
 | **Rele 2** | Controlado via serial (Nuvoton) |
 | **Serial TX** | GPIO1 (TX -> Nuvoton RX) |
 | **Serial RX** | GPIO3 (liberado, SERIAL_TX_ONLY) |
 | **Power** | 5V (shield tem regulador 3.3V para ESP-01) |
 
-### Novuton Shield - Especificações
+### Nuvoton Shield - EspecificaÃ§Ãµes
 
 | Item | Valor |
 |------|-------|
@@ -38,9 +38,9 @@ Firmware para ESP8266-01 (ESP-01/ESP-01S) com shield de relé **Novuton**, contr
 | **LED** | D6 pisca quando comandos funcionam |
 | **GPIO usado pelo ESP-01** | Apenas TX (GPIO1) |
 
-### Por que Novuton e diferente?
+### Por que Nuvoton e diferente?
 
-O shield Novuton **nao usa GPIOs do ESP-01 diretamente**. Ele tem um microcontrolador Nuvoton interno que controla os reles. A comunicacao e feita via serial:
+O shield Nuvoton **nao usa GPIOs do ESP-01 diretamente**. Ele tem um microcontrolador Nuvoton interno que controla os reles. A comunicacao e feita via serial:
 
 1. ESP-01 envia string de inicializacao via TX
 2. Nuvoton aguarda ~10 segundos
@@ -83,18 +83,18 @@ Apenas **PubSubClient** (v2.8+). Nenhuma outra biblioteca externa.
 
 | Topico | Descricao |
 |--------|-----------|
-| `esp01/novuton/relay1/set` | Comando Rele 1 (ON/OFF) |
-| `esp01/novuton/relay1/state` | Estado Rele 1 (ON/OFF) |
-| `esp01/novuton/relay2/set` | Comando Rele 2 (ON/OFF) |
-| `esp01/novuton/relay2/state` | Estado Rele 2 (ON/OFF) |
-| `esp01/novuton/availability` | Disponibilidade (online/offline) |
+| `esp01/Nuvoton/relay1/set` | Comando Rele 1 (ON/OFF) |
+| `esp01/Nuvoton/relay1/state` | Estado Rele 1 (ON/OFF) |
+| `esp01/Nuvoton/relay2/set` | Comando Rele 2 (ON/OFF) |
+| `esp01/Nuvoton/relay2/state` | Estado Rele 2 (ON/OFF) |
+| `esp01/Nuvoton/availability` | Disponibilidade (online/offline) |
 
 ### Home Assistant Discovery
 
 | Topico de Discovery | Entidade |
 |---------------------|----------|
-| `homeassistant/switch/ESP01_Novuton_R1/config` | Switch Rele 1 |
-| `homeassistant/switch/ESP01_Novuton_R2/config` | Switch Rele 2 |
+| `homeassistant/switch/ESP01_Nuvoton_R1/config` | Switch Rele 1 |
+| `homeassistant/switch/ESP01_Nuvoton_R2/config` | Switch Rele 2 |
 
 ## Interface Web
 
@@ -153,7 +153,7 @@ struct Config {
 
 ## Versoes
 
-- **v1.0**: Versao inicial com Novuton Shield (2 reles via serial)
+- **v1.0**: Versao inicial com Nuvoton Shield (2 reles via serial)
 
 ## Licenca
 

@@ -1,14 +1,14 @@
-/*
- * ESP-01 Novuton Shield - Versao 5 (Relay via Serial)
+﻿/*
+ * ESP-01 Nuvoton Shield - Versao 5 (Relay via Serial)
  * Portal de configuracao proprio (sem WiFiManager)
  * MQTT + HA Discovery + Web Interface
  *
- * Hardware: ESP8266-01 (512KB ou 1MB) + Novuton Relay Shield
+ * Hardware: ESP8266-01 (512KB ou 1MB) + Nuvoton Relay Shield
  *   - TX: GPIO1 (Serial para Nuvoton - 115200 baud)
  *   - RX: GPIO3 (liberado para outros usos)
  *   - Serial TX_ONLY para nao interferir com boot
  *
- * Novuton Shield:
+ * Nuvoton Shield:
  *   - 2 reles controlados via serial (Nuvoton MCU)
  *   - Comandos: A0 01 00 A1 (rele 1 OFF), A0 01 01 A2 (rele 1 ON)
  *               A0 02 00 A2 (rele 2 OFF), A0 02 01 A3 (rele 2 ON)
@@ -27,7 +27,7 @@
 // ============================================================
 // PINOS
 // ============================================================
-// Novuton Shield usa serial para controlar reles
+// Nuvoton Shield usa serial para controlar reles
 // GPIO0 e GPIO2 livres (nao usados para reles)
 // TX (GPIO1) -> Nuvoton RX
 // RX (GPIO3) -> Nuvoton TX (nao usado, SERIAL_TX_ONLY)
@@ -53,15 +53,15 @@ Config config;
 // ============================================================
 // TOPICOS FIXOS
 // ============================================================
-const char TOPIC_R1_SET[]   = "esp01/novuton/relay1/set";
-const char TOPIC_R1_STATE[] = "esp01/novuton/relay1/state";
-const char TOPIC_R2_SET[]   = "esp01/novuton/relay2/set";
-const char TOPIC_R2_STATE[] = "esp01/novuton/relay2/state";
-const char TOPIC_AVAIL[]    = "esp01/novuton/availability";
+const char TOPIC_R1_SET[]   = "esp01/Nuvoton/relay1/set";
+const char TOPIC_R1_STATE[] = "esp01/Nuvoton/relay1/state";
+const char TOPIC_R2_SET[]   = "esp01/Nuvoton/relay2/set";
+const char TOPIC_R2_STATE[] = "esp01/Nuvoton/relay2/state";
+const char TOPIC_AVAIL[]    = "esp01/Nuvoton/availability";
 
 // Discovery topics
-const char DISC_R1[] = "homeassistant/switch/ESP01_Novuton_R1/config";
-const char DISC_R2[] = "homeassistant/switch/ESP01_Novuton_R2/config";
+const char DISC_R1[] = "homeassistant/switch/ESP01_Nuvoton_R1/config";
+const char DISC_R2[] = "homeassistant/switch/ESP01_Nuvoton_R2/config";
 
 // ============================================================
 // INSTANCIAS
@@ -81,7 +81,7 @@ bool nuvotonInitialized = false;
 static const char HTML_HEAD[] PROGMEM = R"rawliteral(
 <!DOCTYPE html><html><head><meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>ESP-01 Novuton</title><style>
+<title>ESP-01 Nuvoton</title><style>
 body{font-family:Arial;max-width:400px;margin:20px auto;padding:10px;text-align:center;background:#f4f4f4}
 h1,h2{color:#333}.box{border:1px solid #ccc;border-radius:8px;padding:15px;margin:15px 0;background:#fff}
 .on{color:green;font-weight:bold}.off{color:red;font-weight:bold}
@@ -123,7 +123,7 @@ void setup() {
   // Usar SERIAL_TX_ONLY para liberar RX (GPIO3) para outros usos
   Serial.begin(115200, SERIAL_8N1, SERIAL_TX_ONLY);
   delay(200);
-  Serial.println(F("\n--- ESP-01 Boot (Novuton Shield) ---"));
+  Serial.println(F("\n--- ESP-01 Boot (Nuvoton Shield) ---"));
 
   EEPROM.begin(EEPROM_SIZE);
   loadConfig();
@@ -179,7 +179,7 @@ void loop() {
 }
 
 // ============================================================
-// NOVUTON - INICIALIZACAO E COMANDOS
+// Nuvoton - INICIALIZACAO E COMANDOS
 // ============================================================
 void initNuvoton() {
   Serial.println(F("[NUVOTON] Aguardando 5s para inicializacao..."));
@@ -240,7 +240,7 @@ void startConfigPortal() {
     String html;
     html.reserve(1800);
     html += FPSTR(HTML_HEAD);
-    html += F("<h1>Configuracao ESP-01 (Novuton)</h1><div class='box'><form action='/save' method='POST'>");
+    html += F("<h1>Configuracao ESP-01 (Nuvoton)</h1><div class='box'><form action='/save' method='POST'>");
     html += F("<label>WiFi SSID</label><input name='s' maxlength='32' value='");
     html += config.ssid;
     html += F("'>");
@@ -419,30 +419,30 @@ void publishDiscovery() {
 
   // Rele 1
   snprintf(buf, sizeof(buf),
-    "{\"name\":\"Rele 1\",\"uniq_id\":\"ESP01_Novuton_R1\","
-    "\"stat_t\":\"esp01/novuton/relay1/state\","
-    "\"cmd_t\":\"esp01/novuton/relay1/set\","
-    "\"avty_t\":\"esp01/novuton/availability\","
+    "{\"name\":\"Rele 1\",\"uniq_id\":\"ESP01_Nuvoton_R1\","
+    "\"stat_t\":\"esp01/Nuvoton/relay1/state\","
+    "\"cmd_t\":\"esp01/Nuvoton/relay1/set\","
+    "\"avty_t\":\"esp01/Nuvoton/availability\","
     "\"pl_on\":\"ON\",\"pl_off\":\"OFF\","
     "\"stat_on\":\"ON\",\"stat_off\":\"OFF\",\"ret\":true,"
-    "\"dev\":{\"ids\":[\"ESP01_Novuton\"],"
-    "\"name\":\"ESP-01 Novuton Shield\","
-    "\"mf\":\"Novuton\",\"mdl\":\"ESP-01 Relay Shield\",\"sw\":\"5.0\"}}");
+    "\"dev\":{\"ids\":[\"ESP01_Nuvoton\"],"
+    "\"name\":\"ESP-01 Nuvoton Shield\","
+    "\"mf\":\"Nuvoton\",\"mdl\":\"ESP-01 Relay Shield\",\"sw\":\"5.0\"}}");
   bool ok1 = mqttClient.publish(DISC_R1, buf, true);
   Serial.print(F("Discovery R1: "));
   Serial.println(ok1 ? F("OK") : F("FALHOU"));
 
   // Rele 2
   snprintf(buf, sizeof(buf),
-    "{\"name\":\"Rele 2\",\"uniq_id\":\"ESP01_Novuton_R2\","
-    "\"stat_t\":\"esp01/novuton/relay2/state\","
-    "\"cmd_t\":\"esp01/novuton/relay2/set\","
-    "\"avty_t\":\"esp01/novuton/availability\","
+    "{\"name\":\"Rele 2\",\"uniq_id\":\"ESP01_Nuvoton_R2\","
+    "\"stat_t\":\"esp01/Nuvoton/relay2/state\","
+    "\"cmd_t\":\"esp01/Nuvoton/relay2/set\","
+    "\"avty_t\":\"esp01/Nuvoton/availability\","
     "\"pl_on\":\"ON\",\"pl_off\":\"OFF\","
     "\"stat_on\":\"ON\",\"stat_off\":\"OFF\",\"ret\":true,"
-    "\"dev\":{\"ids\":[\"ESP01_Novuton\"],"
-    "\"name\":\"ESP-01 Novuton Shield\","
-    "\"mf\":\"Novuton\",\"mdl\":\"ESP-01 Relay Shield\",\"sw\":\"5.0\"}}");
+    "\"dev\":{\"ids\":[\"ESP01_Nuvoton\"],"
+    "\"name\":\"ESP-01 Nuvoton Shield\","
+    "\"mf\":\"Nuvoton\",\"mdl\":\"ESP-01 Relay Shield\",\"sw\":\"5.0\"}}");
   bool ok2 = mqttClient.publish(DISC_R2, buf, true);
   Serial.print(F("Discovery R2: "));
   Serial.println(ok2 ? F("OK") : F("FALHOU"));
@@ -469,8 +469,8 @@ void sendMainPage() {
   html.reserve(1200);
 
   html += FPSTR(HTML_HEAD);
-  html += F("<h1>ESP-01 Novuton Shield</h1>");
-  html += F("<div class='shield'>Novuton Relay Shield - 2 Reles via Serial</div>");
+  html += F("<h1>ESP-01 Nuvoton Shield</h1>");
+  html += F("<div class='shield'>Nuvoton Relay Shield - 2 Reles via Serial</div>");
 
   // Rele 1
   html += F("<div class='box'><h2>Rele 1</h2><p>Status: <span class='");
