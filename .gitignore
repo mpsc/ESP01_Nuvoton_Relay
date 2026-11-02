@@ -1,0 +1,16 @@
+# Artefatos de build do PlatformIO
+.pio/
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# Sistema
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Obs.: firmware/*.bin e mantido de proposito no repositorio.
+#       Ele e o artefato que se envia pela pagina de OTA.
